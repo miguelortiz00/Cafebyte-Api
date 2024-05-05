@@ -9,6 +9,17 @@ app.use(express.json());
 // Configura CORS
 app.use(cors());
 
+// Middleware para manejar solicitudes OPTIONS preflight
+app.options('*', cors()); // Habilitar CORS para todas las rutas OPTIONS
+
+// Agregar un middleware para manejar solicitudes OPTIONS preflight
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 // Lee el contenido del archivo db.json y lo asigna a la variable coffeeDrinks
 let coffeeDrinks = readData();
 
