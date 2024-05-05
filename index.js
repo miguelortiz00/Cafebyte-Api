@@ -6,10 +6,8 @@ const app = express();
 
 app.use(express.json());
 
-// Configura CORS para permitir solicitudes desde el origen de Render
-app.use(cors({
-  origin: 'http://192.168.1.96:8081/' // Reemplaza 'tu-app-render' con el nombre de tu aplicación en Render
-}));
+// Configura CORS
+app.use(cors());
 
 // Lee el contenido del archivo db.json y lo asigna a la variable coffeeDrinks
 let coffeeDrinks = readData();
